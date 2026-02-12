@@ -1,0 +1,58 @@
+{
+    "common": {
+        "app_name": "POS Food",
+        "loading": "Loading…",
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "create": "Create",
+        "search": "Search",
+        "confirm": "Confirm",
+        "back": "Back",
+        "close": "Close",
+        "yes": "Yes",
+        "no": "No",
+        "actions": "Actions",
+        "status": "Status",
+        "no_results": "No results",
+        "error": "Error",
+        "success": "Success"
+    },
+    "errors": {
+        "required": "This field is required",
+        "network": "Network error. Check your connection.",
+        "timeout": "Request timed out. Please retry.",
+        "server_unavailable": "Server unavailable.",
+        "unauthorized": "Unauthorized.",
+        "unknown": "Unknown error."
+    },
+    "waiter": {
+        "title": "Service",
+        "nav": {
+            "tables": "Floor",
+            "orders": "Orders",
+            "account": "Account"
+        },
+        "tables": {
+            "title": "Floor Plan",
+            "free": "Free",
+            "occupied": "Occupied",
+            "reserved": "Reserved",
+            "select_table": "Select a table"
+        },
+        "order": {
+            "new_order": "New order",
+            "add_item": "Add item",
+            "send_kitchen": "Send to kitchen",
+            "request_bill": "Request bill",
+            "sent": "Sent",
+            "pending": "Pending",
+            "failed_retry": "Failed — Retry"
+        },
+        "dashboard": {
+            "title": "Service — Home",
+            "welcome": "Welcome"
+        }
+    }
+}

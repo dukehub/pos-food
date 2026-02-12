@@ -1,0 +1,29 @@
+{
+    "name": "admin-app",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite --port 3000",
+        "build": "vite build",
+        "preview": "vite preview",
+        "lint": "echo 'no linter configured yet'",
+        "typecheck": "vue-tsc --noEmit"
+    },
+    "dependencies": {
+        "@nuxt/ui": "^3.0.0",
+        "@pos-food/core": "workspace:*",
+        "@pos-food/ui": "workspace:*",
+        "pinia": "^3.0.0",
+        "tailwindcss": "^4.0.0",
+        "vue": "^3.5.0",
+        "vue-i18n": "^11.2.8",
+        "vue-router": "^4.5.0"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^5.0.0",
+        "typescript": "^5.7.0",
+        "vite": "^6.0.0",
+        "vue-tsc": "^2.2.0"
+    }
+}

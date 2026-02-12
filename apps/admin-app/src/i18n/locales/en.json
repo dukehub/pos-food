@@ -1,0 +1,58 @@
+{
+    "common": {
+        "app_name": "POS Food",
+        "loading": "Loading…",
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "create": "Create",
+        "search": "Search",
+        "confirm": "Confirm",
+        "back": "Back",
+        "close": "Close",
+        "yes": "Yes",
+        "no": "No",
+        "actions": "Actions",
+        "status": "Status",
+        "name": "Name",
+        "description": "Description",
+        "price": "Price",
+        "quantity": "Quantity",
+        "total": "Total",
+        "subtotal": "Subtotal",
+        "tax": "Tax",
+        "no_results": "No results",
+        "error": "Error",
+        "success": "Success"
+    },
+    "errors": {
+        "required": "This field is required",
+        "email_invalid": "Invalid email address",
+        "network": "Network error. Check your connection.",
+        "timeout": "Request timed out. Please retry.",
+        "server_unavailable": "Server unavailable. Try again later.",
+        "unauthorized": "Unauthorized. Please log in again.",
+        "forbidden": "Access denied.",
+        "not_found": "Resource not found.",
+        "conflict": "Conflict. The resource has been modified.",
+        "validation": "Validation error.",
+        "unknown": "Unknown error."
+    },
+    "admin": {
+        "title": "Administration",
+        "nav": {
+            "dashboard": "Dashboard",
+            "products": "Products",
+            "categories": "Categories",
+            "orders": "Orders",
+            "tables": "Tables",
+            "users": "Users",
+            "settings": "Settings"
+        },
+        "dashboard": {
+            "title": "Dashboard",
+            "welcome": "Welcome to POS Food Admin"
+        }
+    }
+}

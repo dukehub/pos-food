@@ -1,0 +1,16 @@
+{
+    "name": "pos-food",
+    "private": true,
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "scripts": {
+        "dev:admin": "bun run --cwd apps/admin-app dev",
+        "dev:pos": "bun run --cwd apps/pos-app dev",
+        "dev:waiter": "bun run --cwd apps/waiter-app dev",
+        "build:all": "bun run --cwd apps/admin-app build && bun run --cwd apps/pos-app build && bun run --cwd apps/waiter-app build",
+        "lint": "echo 'lint not configured yet'",
+        "typecheck": "echo 'typecheck not configured yet'"
+    }
+}
