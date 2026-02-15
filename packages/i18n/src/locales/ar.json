@@ -1,0 +1,44 @@
+{
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "add": "إضافة",
+    "search": "بحث",
+    "loading": "جاري التحميل...",
+    "confirm": "تأكيد",
+    "back": "رجوع",
+    "close": "إغلاق",
+    "yes": "نعم",
+    "no": "لا",
+    "actions": "إجراءات",
+    "status": "الحالة",
+    "name": "الاسم",
+    "description": "الوصف",
+    "price": "السعر",
+    "total": "المجموع",
+    "quantity": "الكمية"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور"
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "products": "المنتجات",
+    "categories": "الفئات",
+    "orders": "الطلبات",
+    "settings": "الإعدادات",
+    "tables": "الطاولات"
+  },
+  "errors": {
+    "required": "هذا الحقل مطلوب",
+    "invalid_email": "بريد إلكتروني غير صالح",
+    "network": "خطأ في الشبكة. يرجى المحاولة مرة أخرى.",
+    "unauthorized": "غير مصرح",
+    "not_found": "غير موجود"
+  }
+}

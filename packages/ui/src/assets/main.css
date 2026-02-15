@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/*
+ * Global design tokens & overrides
+ * Keep additions minimal — theme customization goes through Nuxt UI options.
+ */

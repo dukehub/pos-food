@@ -1,0 +1,44 @@
+{
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "search": "Rechercher",
+    "loading": "Chargement...",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "close": "Fermer",
+    "yes": "Oui",
+    "no": "Non",
+    "actions": "Actions",
+    "status": "Statut",
+    "name": "Nom",
+    "description": "Description",
+    "price": "Prix",
+    "total": "Total",
+    "quantity": "Quantité"
+  },
+  "auth": {
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "email": "Email",
+    "password": "Mot de passe"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "products": "Produits",
+    "categories": "Catégories",
+    "orders": "Commandes",
+    "settings": "Paramètres",
+    "tables": "Tables"
+  },
+  "errors": {
+    "required": "Ce champ est requis",
+    "invalid_email": "Email invalide",
+    "network": "Erreur réseau. Veuillez réessayer.",
+    "unauthorized": "Non autorisé",
+    "not_found": "Non trouvé"
+  }
+}

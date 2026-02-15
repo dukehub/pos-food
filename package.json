@@ -1,0 +1,26 @@
+{
+  "name": "pos-food",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "plugins/*"
+  ],
+  "scripts": {
+    "dev:admin": "bun run --cwd apps/admin dev",
+    "dev:pos": "bun run --cwd apps/pos dev",
+    "dev:waiter": "bun run --cwd apps/waiter dev",
+    "build:admin": "bun run --cwd apps/admin build",
+    "build:pos": "bun run --cwd apps/pos build",
+    "build:waiter": "bun run --cwd apps/waiter build",
+    "typecheck": "bun run typecheck:admin && bun run typecheck:pos && bun run typecheck:waiter",
+    "typecheck:admin": "bun run --cwd apps/admin typecheck",
+    "typecheck:pos": "bun run --cwd apps/pos typecheck",
+    "typecheck:waiter": "bun run --cwd apps/waiter typecheck"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "vue": "^3.5.0",
+    "vue-tsc": "^3.1.5"
+  }
+}

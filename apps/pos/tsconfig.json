@@ -1,0 +1,29 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@pos/core": ["../../packages/core/src"],
+      "@pos/core/*": ["../../packages/core/src/*"],
+      "@pos/ui": ["../../packages/ui/src"],
+      "@pos/ui/*": ["../../packages/ui/src/*"],
+      "@pos/api": ["../../packages/api/src"],
+      "@pos/api/*": ["../../packages/api/src/*"],
+      "@pos/i18n": ["../../packages/i18n/src"],
+      "@pos/i18n/*": ["../../packages/i18n/src/*"],
+      "@pos/validation": ["../../packages/validation/src"],
+      "@pos/validation/*": ["../../packages/validation/src/*"],
+      "#build/ui": ["./node_modules/.nuxt-ui/ui"],
+      "#build/ui/*": ["./node_modules/.nuxt-ui/ui/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "auto-imports.d.ts",
+    "components.d.ts",
+    "vite.config.ts"
+  ]
+}

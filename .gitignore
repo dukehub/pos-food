@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Vite
+*.local
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Nuxt UI auto-generated type declarations
+auto-imports.d.ts
+components.d.ts
+
+# Nuxt UI internal
+.nuxt-ui/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local

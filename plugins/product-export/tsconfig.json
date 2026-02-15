@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@pos/core": ["../../packages/core/src"],
+      "@pos/core/*": ["../../packages/core/src/*"]
+    }
+  },
+  "include": ["*.ts", "*.vue"]
+}

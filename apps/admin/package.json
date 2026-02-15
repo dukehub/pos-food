@@ -1,0 +1,35 @@
+{
+  "name": "@pos/admin-app",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3000",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "vue": "^3.5.0",
+    "vue-router": "^4.5.0",
+    "pinia": "^3.0.0",
+    "vue-i18n": "^11.2.8",
+    "zod": "^4.3.6",
+    "vee-validate": "^4.15.1",
+    "@vee-validate/zod": "^4.15.1",
+    "@pos/ui": "workspace:*",
+    "@pos/core": "workspace:*",
+    "@pos/i18n": "workspace:*",
+    "@pos/validation": "workspace:*",
+    "@pos/api": "workspace:*",
+    "@pos/plugin-product-export": "workspace:*",
+    "@pos/plugin-product-nutrition": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.2",
+    "@types/node": "^24.10.1",
+    "vite": "^7.3.1",
+    "typescript": "~5.9.3",
+    "vue-tsc": "^3.1.5"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@pos/validation",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "vee-validate": "^4.15.1",
+    "@vee-validate/zod": "^4.15.1"
+  }
+}
