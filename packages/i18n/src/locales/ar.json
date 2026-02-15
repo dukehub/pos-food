@@ -34,6 +34,61 @@
     "settings": "الإعدادات",
     "tables": "الطاولات"
   },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "welcome": "مرحباً",
+    "kpi": {
+      "revenue": "إيرادات اليوم",
+      "orders": "الطلبات",
+      "avgTicket": "متوسط الفاتورة",
+      "tablesOccupied": "الطاولات المشغولة"
+    },
+    "trend": {
+      "up": "ارتفاع",
+      "down": "انخفاض",
+      "vsYesterday": "مقارنة بالأمس"
+    },
+    "chart": {
+      "salesTitle": "المبيعات — آخر 7 أيام",
+      "ordersTitle": "الطلبات — 24 ساعة"
+    },
+    "topProducts": {
+      "title": "المنتجات الأكثر مبيعاً",
+      "rank": "#",
+      "product": "المنتج",
+      "category": "الفئة",
+      "qty": "الكمية",
+      "revenue": "الإيرادات"
+    },
+    "recentOrders": {
+      "title": "الطلبات الأخيرة",
+      "orderNum": "رقم الطلب",
+      "table": "الطاولة",
+      "status": "الحالة",
+      "total": "المجموع",
+      "time": "الوقت",
+      "statusPending": "قيد الانتظار",
+      "statusPreparing": "قيد التحضير",
+      "statusReady": "جاهز",
+      "statusDelivered": "تم التسليم"
+    },
+    "alerts": {
+      "title": "التنبيهات والمهام",
+      "lowStock": "مخزون منخفض",
+      "lowStockDesc": "طماطم — 2 كغ متبقية",
+      "registerOpen": "صندوق مفتوح",
+      "registerOpenDesc": "الصندوق رقم 1 لم يُغلق منذ الأمس",
+      "reservation": "حجز",
+      "reservationDesc": "3 حجوزات معلقة هذا المساء"
+    },
+    "quickActions": {
+      "title": "إجراءات سريعة",
+      "newProduct": "منتج جديد",
+      "openRegister": "فتح الصندوق",
+      "addZone": "إضافة منطقة",
+      "exportReport": "تصدير التقرير"
+    }
+  },
   "errors": {
     "required": "هذا الحقل مطلوب",
     "invalid_email": "بريد إلكتروني غير صالح",

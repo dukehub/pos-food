@@ -1,73 +1,66 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { ExtensionPoint } from '@pos/ui'
+import KpiCards from '@/components/dashboard/KpiCards.vue'
+import SalesChart from '@/components/dashboard/SalesChart.vue'
+import TopProducts from '@/components/dashboard/TopProducts.vue'
+import RecentOrders from '@/components/dashboard/RecentOrders.vue'
+import AlertsPanel from '@/components/dashboard/AlertsPanel.vue'
+import QuickActions from '@/components/dashboard/QuickActions.vue'
 
 const { t } = useI18n()
-
-// Demo context for the product tabs extension point
-const productCtx = {
-  productId: 'prod-001',
-  productName: 'Burger Classic'
-}
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col gap-8 p-8">
-    <!-- Header -->
-    <div class="flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <UIcon name="i-lucide-layout-dashboard" class="size-8 text-primary" />
-        <h1 class="text-2xl font-bold">{{ t('nav.dashboard') }} — Admin</h1>
-      </div>
-    </div>
+  <UDashboardPanel id="dashboard">
+    <!-- Header: Navbar -->
+    <template #header>
+      <UDashboardNavbar :title="t('dashboard.title')">
+        <template #leading>
+          <UDashboardSidebarCollapse />
+        </template>
 
-    <!-- Products Toolbar — with ExtensionPoint for plugin actions -->
-    <UCard>
-      <template #header>
-        <div class="flex items-center justify-between">
-          <h2 class="text-lg font-semibold">{{ t('nav.products') }}</h2>
-          <div class="flex items-center gap-2">
-            <UButton :label="t('common.add')" icon="i-lucide-plus" size="sm" />
+        <template #right>
+          <UTooltip text="Notifications">
+            <UButton
+              color="neutral"
+              variant="ghost"
+              icon="i-lucide-bell"
+              square
+            />
+          </UTooltip>
 
-            <!-- Plugin-contributed toolbar actions appear here -->
-            <ExtensionPoint
-              name="admin.products.toolbar.actions"
-              tag="div"
-              class="flex items-center gap-2"
-            >
-              <template #empty>
-                <!-- No plugins: nothing rendered -->
-              </template>
-            </ExtensionPoint>
+          <UColorModeButton />
+        </template>
+      </UDashboardNavbar>
+    </template>
+
+    <!-- Body: Dashboard Content -->
+    <template #body>
+      <div class="flex flex-col gap-6">
+        <!-- KPI Cards -->
+        <KpiCards />
+        <ExtensionPoint name="admin.dashboard.kpis" />
+
+        <!-- Main + Side Grid -->
+        <div class="grid grid-cols-1 gap-6 xl:grid-cols-3">
+          <!-- Main Column (2/3) -->
+          <div class="flex flex-col gap-6 xl:col-span-2">
+            <SalesChart />
+            <ExtensionPoint name="admin.dashboard.widgets.main" />
+            <TopProducts />
+            <RecentOrders />
+          </div>
+
+          <!-- Side Column (1/3) -->
+          <div class="flex flex-col gap-6">
+            <AlertsPanel />
+            <QuickActions />
+            <ExtensionPoint name="admin.dashboard.quickActions" />
+            <ExtensionPoint name="admin.dashboard.widgets.side" />
           </div>
         </div>
-      </template>
-
-      <p class="text-muted">{{ t('common.loading') }}</p>
-    </UCard>
-
-    <!-- Product Detail Tabs — with ExtensionPoint for plugin tabs -->
-    <UCard>
-      <template #header>
-        <h2 class="text-lg font-semibold">{{ productCtx.productName }}</h2>
-      </template>
-
-      <!-- Core tabs would go here -->
-      <div class="flex flex-col gap-4">
-        <p class="text-sm text-muted">Fiche produit (onglets core ici...)</p>
-
-        <!-- Plugin-contributed tabs appear here -->
-        <ExtensionPoint
-          name="admin.product.tabs"
-          :ctx="productCtx"
-          tag="div"
-          class="flex flex-col gap-4"
-        >
-          <template #empty>
-            <p class="text-xs text-muted italic">Aucun plugin actif pour cet emplacement.</p>
-          </template>
-        </ExtensionPoint>
       </div>
-    </UCard>
-  </div>
+    </template>
+  </UDashboardPanel>
 </template>

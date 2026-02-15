@@ -34,6 +34,61 @@
     "settings": "Paramètres",
     "tables": "Tables"
   },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "welcome": "Bienvenue",
+    "kpi": {
+      "revenue": "CA du jour",
+      "orders": "Commandes",
+      "avgTicket": "Ticket moyen",
+      "tablesOccupied": "Tables occupées"
+    },
+    "trend": {
+      "up": "en hausse",
+      "down": "en baisse",
+      "vsYesterday": "vs hier"
+    },
+    "chart": {
+      "salesTitle": "Ventes — 7 derniers jours",
+      "ordersTitle": "Commandes — 24h"
+    },
+    "topProducts": {
+      "title": "Produits les plus vendus",
+      "rank": "#",
+      "product": "Produit",
+      "category": "Catégorie",
+      "qty": "Qté",
+      "revenue": "CA"
+    },
+    "recentOrders": {
+      "title": "Commandes récentes",
+      "orderNum": "N° Commande",
+      "table": "Table",
+      "status": "Statut",
+      "total": "Total",
+      "time": "Heure",
+      "statusPending": "En attente",
+      "statusPreparing": "En préparation",
+      "statusReady": "Prêt",
+      "statusDelivered": "Livré"
+    },
+    "alerts": {
+      "title": "Alertes & Tâches",
+      "lowStock": "Stock bas",
+      "lowStockDesc": "Tomates — 2 kg restants",
+      "registerOpen": "Caisse ouverte",
+      "registerOpenDesc": "Caisse #1 non clôturée depuis hier",
+      "reservation": "Réservation",
+      "reservationDesc": "3 réservations en attente ce soir"
+    },
+    "quickActions": {
+      "title": "Actions rapides",
+      "newProduct": "Nouveau produit",
+      "openRegister": "Ouvrir caisse",
+      "addZone": "Ajouter zone",
+      "exportReport": "Exporter rapport"
+    }
+  },
   "errors": {
     "required": "Ce champ est requis",
     "invalid_email": "Email invalide",

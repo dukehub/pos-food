@@ -34,6 +34,61 @@
     "settings": "Settings",
     "tables": "Tables"
   },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome",
+    "kpi": {
+      "revenue": "Today's Revenue",
+      "orders": "Orders",
+      "avgTicket": "Avg. Ticket",
+      "tablesOccupied": "Tables Occupied"
+    },
+    "trend": {
+      "up": "up",
+      "down": "down",
+      "vsYesterday": "vs yesterday"
+    },
+    "chart": {
+      "salesTitle": "Sales — Last 7 Days",
+      "ordersTitle": "Orders — 24h"
+    },
+    "topProducts": {
+      "title": "Top Products",
+      "rank": "#",
+      "product": "Product",
+      "category": "Category",
+      "qty": "Qty",
+      "revenue": "Revenue"
+    },
+    "recentOrders": {
+      "title": "Recent Orders",
+      "orderNum": "Order #",
+      "table": "Table",
+      "status": "Status",
+      "total": "Total",
+      "time": "Time",
+      "statusPending": "Pending",
+      "statusPreparing": "Preparing",
+      "statusReady": "Ready",
+      "statusDelivered": "Delivered"
+    },
+    "alerts": {
+      "title": "Alerts & Tasks",
+      "lowStock": "Low Stock",
+      "lowStockDesc": "Tomatoes — 2 kg remaining",
+      "registerOpen": "Register Open",
+      "registerOpenDesc": "Register #1 not closed since yesterday",
+      "reservation": "Reservation",
+      "reservationDesc": "3 pending reservations tonight"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "newProduct": "New Product",
+      "openRegister": "Open Register",
+      "addZone": "Add Zone",
+      "exportReport": "Export Report"
+    }
+  },
   "errors": {
     "required": "This field is required",
     "invalid_email": "Invalid email",
