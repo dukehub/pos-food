@@ -31,3 +31,11 @@ components.d.ts
 .env
 .env.local
 .env.*.local
+
+# Python backend
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+.venv/
+venv/

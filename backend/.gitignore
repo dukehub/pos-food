@@ -1,0 +1,12 @@
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+__pycache__/
+.venv/
+
+# Temporary
+tmp/
+temp/
+.egg-info
