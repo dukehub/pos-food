@@ -134,21 +134,21 @@ erDiagram
 
 ## 13 Plugins Métier
 
-| Plugin          | Key                    | Dépendances       | Description            |
-| --------------- | ---------------------- | ----------------- | ---------------------- |
-| Catalog Product | `catalog_product`      | —                 | Gestion produits       |
-| Catalog i18n    | `catalog_product_i18n` | `catalog_product` | Traductions produits   |
-| Orders          | `orders`               | `catalog_product` | Commandes              |
-| Floor Plan      | `floor_plan`           | —                 | Plan de salle / tables |
-| Customers       | `customers`            | —                 | Gestion clients        |
-| Invoices        | `invoices`             | `customers`       | Facturation            |
-| Devices         | `devices`              | —                 | Gestion appareils      |
-| KDS             | `kds`                  | `devices`         | Kitchen Display        |
-| Printer         | `printer`              | `devices`         | Impression tickets     |
-| Product Bundle  | `product_bundle`       | `catalog_product` | Menus/Formules         |
-| Ticket Designer | `ticket_desingner`     | —                 | Design tickets         |
-| Users           | `users`                | —                 | Utilisateurs & rôles   |
-| Config          | `config`               | —                 | Paramètres globaux     |
+| Plugin          | Key                    | Dépendances       | Description                      |
+| --------------- | ---------------------- | ----------------- | -------------------------------- |
+| Catalog Product | `catalog_product`      | —                 | Gestion produits                 |
+| Catalog i18n    | `catalog_product_i18n` | `catalog_product` | Traductions produits             |
+| Orders          | `orders`               | `catalog_product` | Commandes                        |
+| Floor Plan      | `floor_plan`           | — devices         | Plan de salle / tables / kitchen |
+| Customers       | `customers`            | —                 | Gestion clients                  |
+| Invoices        | `invoices`             | `customers`       | Facturation                      |
+| Devices         | `devices`              | —                 | Gestion appareils                |
+| KDS             | `kds`                  | `devices`         | Kitchen Display                  |
+| Printer         | `printer`              | `devices`         | Impression tickets               |
+| Product Bundle  | `product_bundle`       | `catalog_product` | Menus/Formules                   |
+| Ticket Designer | `ticket_desingner`     | —                 | Design tickets                   |
+| Users           | `users`                | —                 | Utilisateurs & rôles             |
+| Config          | `config`               | —                 | Paramètres globaux               |
 
 ### Graphe de dépendances
 

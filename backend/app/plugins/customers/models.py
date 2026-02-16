@@ -8,9 +8,9 @@ from sqlalchemy import (
     Integer,
     Numeric,
     String,
+    UniqueConstraint,
     func,
 )
-
 from app.core.db.base import Base
 
 
@@ -23,6 +23,10 @@ class Customer(Base):
     __table_args__ = (
         Index("ix_customer_tenant_name", "tenant_id", "name"),
         Index("ix_customer_tenant_phone", "tenant_id", "phone"),
+        Index("ix_customer_tenant_active", "tenant_id", "is_active"),
+        # optionnels (si tu veux éviter doublons)
+        # UniqueConstraint("tenant_id", "phone", name="uq_customer_tenant_phone"),
+        # UniqueConstraint("tenant_id", "email", name="uq_customer_tenant_email"),
     )
 
     id = Column(String(36), primary_key=True, default=uuid_str)
@@ -32,12 +36,15 @@ class Customer(Base):
     phone = Column(String(32), nullable=True)
     email = Column(String(160), nullable=True)
 
+    # Identifiants fiscaux (optionnels)
     nif = Column(String(64), nullable=True)
     ai = Column(String(64), nullable=True)
     rc = Column(String(64), nullable=True)
     tax_id = Column(String(64), nullable=True)
+
     address = Column(String(255), nullable=True)
 
+    # ⚠️ idéalement dérivé d’un ledger, mais OK comme cache
     current_balance = Column(Numeric(12, 2), nullable=False, default=0)
     credit_limit = Column(Numeric(12, 2), nullable=True)
     payment_due_days = Column(Integer, nullable=False, default=30)

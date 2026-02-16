@@ -4,7 +4,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class OrderLineCreate(BaseModel):
-    name: str = Field(min_length=1, max_length=120)
+    name_snapshot: str = Field(min_length=1, max_length=120)
     quantity: int = Field(ge=1, default=1)
     unit_price: Decimal = Field(ge=0, default=Decimal("0.00"))
     product_id: str | None = None
@@ -23,7 +23,7 @@ class OrderLineOut(BaseModel):
     id: str
     product_id: str | None
     variant_id: str | None
-    name: str
+    name_snapshot: str
     quantity: int
     unit_price: Decimal
     line_total: Decimal

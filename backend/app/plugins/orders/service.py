@@ -41,7 +41,7 @@ async def create_order(
                 order_id=order.id,
                 product_id=line.product_id,
                 variant_id=line.variant_id,
-                name=line.name,
+                name_snapshot=line.name_snapshot,
                 quantity=line.quantity,
                 unit_price=line.unit_price,
                 line_total=line_total,

@@ -1,6 +1,6 @@
 import uuid
 
-from sqlalchemy import Boolean, Column, DateTime, Index, Integer, String, func
+from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Index, Integer, String, func
 
 from app.core.db.base import Base
 
@@ -9,21 +9,17 @@ def uuid_str() -> str:
     return str(uuid.uuid4())
 
 
-class KdsScreen(Base):
+from app.plugins.devices.models import Device
+
+
+class KdsScreen(Device):
     __tablename__ = "device_kds"
-    __table_args__ = (
-        Index("ix_device_kds_tenant_name", "tenant_id", "name"),
-    )
+    # Parent 'device' table already has relevant indexes.
+    __table_args__ = ()
 
-    id = Column(String(36), primary_key=True, default=uuid_str)
-    tenant_id = Column(String(36), nullable=False, index=True)
+    id = Column(String(36), ForeignKey("device.id", ondelete="CASCADE"), primary_key=True)
 
-    name = Column(String(100), nullable=False)
-    ip_address = Column(String(64), nullable=True)
     port = Column(Integer, nullable=False, default=3000)
-    location = Column(String(120), nullable=True)
-    is_active = Column(Boolean, nullable=False, default=True)
 
-    created_at = Column(DateTime, default=func.now(), nullable=False)
-    updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
+    __mapper_args__ = {"polymorphic_identity": "kds"}
 

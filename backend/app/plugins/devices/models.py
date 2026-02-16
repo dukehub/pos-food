@@ -29,3 +29,7 @@ class Device(Base):
     created_at = Column(DateTime, default=func.now(), nullable=False)
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
 
+    __mapper_args__ = {
+        "polymorphic_on": device_type,
+        "polymorphic_identity": "device",
+    }

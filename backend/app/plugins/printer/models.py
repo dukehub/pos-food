@@ -1,13 +1,13 @@
 import enum
-import uuid
-
-from sqlalchemy import Boolean, Column, DateTime, Enum, Index, Integer, String, func
+from typing import Optional
+from sqlalchemy import (
+    Boolean, Column, DateTime, Enum, ForeignKey, Index, Integer, String
+)
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 
 from app.core.db.base import Base
-
-
-def uuid_str() -> str:
-    return str(uuid.uuid4())
+from app.plugins.devices.models import Device
 
 
 class PrinterType(str, enum.Enum):
@@ -17,23 +17,18 @@ class PrinterType(str, enum.Enum):
     BLUETOOTH = "bluetooth"
 
 
-class DevicePrinter(Base):
+class DevicePrinter(Device):
     __tablename__ = "device_printer"
-    __table_args__ = (
-        Index("ix_device_printer_tenant_name", "tenant_id", "name"),
-    )
+    # Parent 'device' table already indexes tenant_id+name.
+    # We don't need to re-index here unless we duplicate columns.
+    __table_args__ = ()
 
-    id = Column(String(36), primary_key=True, default=uuid_str)
-    tenant_id = Column(String(36), nullable=False, index=True)
+    id = Column(String(36), ForeignKey("device.id", ondelete="CASCADE"), primary_key=True)
 
-    name = Column(String(100), nullable=False)
     driver_type = Column(Enum(PrinterType), nullable=False, default=PrinterType.WINDOWS_RAW)
     system_printer_name = Column(String(120), nullable=True)
-    ip_address = Column(String(64), nullable=True)
+    # ip_address is inherited from Device
     port = Column(Integer, nullable=False, default=9100)
     paper_width = Column(Integer, nullable=False, default=80)
-    is_active = Column(Boolean, nullable=False, default=True)
 
-    created_at = Column(DateTime, default=func.now(), nullable=False)
-    updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
-
+    __mapper_args__ = {"polymorphic_identity": "printer"}

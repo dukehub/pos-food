@@ -163,6 +163,10 @@ def test_floor_plan_plugin_enable_and_health(client):
     plugin_key = "floor_plan"
     headers = {"X-Tenant-Id": tenant_id}
 
+    # Enable dependencies
+    client.post(f"/api/tenants/{tenant_id}/plugins/catalog_product:enable")
+    client.post(f"/api/tenants/{tenant_id}/plugins/devices:enable")
+
     r_enable = client.post(f"/api/tenants/{tenant_id}/plugins/{plugin_key}:enable")
     assert r_enable.status_code == 200, r_enable.text
 
@@ -175,6 +179,10 @@ def test_floor_plan_create_zone_and_table(client):
     tenant_id = "tenant-floor-crud"
     headers = {"X-Tenant-Id": tenant_id}
     plugin_key = "floor_plan"
+
+    # Enable dependencies
+    client.post(f"/api/tenants/{tenant_id}/plugins/catalog_product:enable")
+    client.post(f"/api/tenants/{tenant_id}/plugins/devices:enable")
 
     r_enable = client.post(f"/api/tenants/{tenant_id}/plugins/{plugin_key}:enable")
     assert r_enable.status_code == 200, r_enable.text
@@ -231,8 +239,8 @@ def test_orders_create_and_list(client):
         "status": "draft",
         "note": "Test order",
         "lines": [
-            {"name": "Pizza Margherita", "quantity": 2, "unit_price": "12.50"},
-            {"name": "Coca Cola", "quantity": 1, "unit_price": "3.00"},
+            {"name_snapshot": "Pizza Margherita", "quantity": 2, "unit_price": "12.50"},
+            {"name_snapshot": "Coca Cola", "quantity": 1, "unit_price": "3.00"},
         ],
     }
     r_create = client.post("/api/plugins/orders/orders", json=payload, headers=headers)
@@ -284,7 +292,7 @@ def test_devices_create_and_list(client):
 
     payload = {
         "name": "Main Device Terminal",
-        "device_type": "terminal",
+        "device_type": "device",
         "identifier": "TERM-01",
         "location": "Front Counter",
         "ip_address": "192.168.1.200",
@@ -380,7 +388,7 @@ def test_users_create_and_list(client):
     payload = {
         "username": "server01",
         "full_name": "Server One",
-        "role": "serveur",
+        "role": "waiter",
         "language": "fr",
         "is_active": True,
     }
@@ -439,6 +447,12 @@ def test_invoices_create_and_list(client):
 def test_ticket_desingner_create_and_list(client):
     tenant_id = "tenant-ticket-designer-ok"
     headers = {"X-Tenant-Id": tenant_id}
+
+    # Dependencies: floor_plan (-> devices, catalog_product) + printer (-> devices)
+    client.post(f"/api/tenants/{tenant_id}/plugins/devices:enable")
+    client.post(f"/api/tenants/{tenant_id}/plugins/catalog_product:enable")
+    client.post(f"/api/tenants/{tenant_id}/plugins/printer:enable")
+    client.post(f"/api/tenants/{tenant_id}/plugins/floor_plan:enable")
 
     r_enable = client.post(f"/api/tenants/{tenant_id}/plugins/ticket_desingner:enable")
     assert r_enable.status_code == 200, r_enable.text
@@ -512,43 +526,45 @@ def test_config_get_and_update_restaurant_info(client):
     r_enable = client.post(f"/api/tenants/{tenant_id}/plugins/config:enable")
     assert r_enable.status_code == 200, r_enable.text
 
-    r_get_initial = client.get("/api/plugins/config/restaurant", headers=headers)
+    r_get_initial = client.get("/api/plugins/config/restaurant_info", headers=headers)
     assert r_get_initial.status_code == 200, r_get_initial.text
     initial = r_get_initial.json()
     assert initial["tenant_id"] == tenant_id
-    assert initial["currency"] == "USD"
-    assert initial["locale"] == "fr"
+    assert initial["value_json"]["currency"] == "USD"
+    assert initial["value_json"]["locale"] == "fr"
 
     payload = {
-        "name": "Le Bistrot Central",
-        "slug": "le-bistrot-central",
-        "currency": "DZD",
-        "locale": "fr",
-        "address": "Rue Didouche Mourad, Alger",
-        "phone": "+213555123456",
-        "email": "contact@bistrot.dz",
-        "tax_nif": "NIF-2026-001",
-        "tax_rc": "RC-2026-002",
-        "tax_ai": "AI-2026-003",
-        "logo_url": "https://cdn.example.com/logo.png",
-        "background_image_url": "https://cdn.example.com/bg-main.jpg",
-        "background_image_secondary_url": "https://cdn.example.com/bg-alt.jpg",
-        "location_label": "Alger Centre",
-        "city": "Alger",
-        "country": "Algerie",
-        "postal_code": "16000",
-        "latitude": "36.7528",
-        "longitude": "3.0420",
+        "value_json": {
+            "name": "Le Bistrot Central",
+            "slug": "le-bistrot-central",
+            "currency": "DZD",
+            "locale": "fr",
+            "address": "Rue Didouche Mourad, Alger",
+            "phone": "+213555123456",
+            "email": "contact@bistrot.dz",
+            "tax_nif": "NIF-2026-001",
+            "tax_rc": "RC-2026-002",
+            "tax_ai": "AI-2026-003",
+            "logo_url": "https://cdn.example.com/logo.png",
+            "background_image_url": "https://cdn.example.com/bg-main.jpg",
+            "background_image_secondary_url": "https://cdn.example.com/bg-alt.jpg",
+            "location_label": "Alger Centre",
+            "city": "Alger",
+            "country": "Algerie",
+            "postal_code": "16000",
+            "latitude": "36.7528",
+            "longitude": "3.0420",
+        }
     }
-    r_put = client.put("/api/plugins/config/restaurant", json=payload, headers=headers)
+    r_put = client.put("/api/plugins/config/restaurant_info", json=payload, headers=headers)
     assert r_put.status_code == 200, r_put.text
     updated = r_put.json()
-    assert updated["name"] == payload["name"]
-    assert updated["tax_nif"] == payload["tax_nif"]
-    assert updated["logo_url"] == payload["logo_url"]
+    assert updated["value_json"]["name"] == payload["value_json"]["name"]
+    assert updated["value_json"]["tax_nif"] == payload["value_json"]["tax_nif"]
+    assert updated["value_json"]["logo_url"] == payload["value_json"]["logo_url"]
 
-    r_get_final = client.get("/api/plugins/config/restaurant", headers=headers)
+    r_get_final = client.get("/api/plugins/config/restaurant_info", headers=headers)
     assert r_get_final.status_code == 200, r_get_final.text
     final_state = r_get_final.json()
-    assert final_state["name"] == payload["name"]
-    assert final_state["address"] == payload["address"]
+    assert final_state["value_json"]["name"] == payload["value_json"]["name"]
+    assert final_state["value_json"]["address"] == payload["value_json"]["address"]

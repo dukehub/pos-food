@@ -10,3 +10,5 @@ __pycache__/
 tmp/
 temp/
 .egg-info
+restaurant-pos-backend.egg-info/
+.pytest_cache/

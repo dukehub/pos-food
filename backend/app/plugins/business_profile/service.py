@@ -12,8 +12,8 @@ def _clean(value: str | None) -> str:
 def _apply_payload(config: RestaurantConfig, payload: RestaurantConfigUpsert) -> None:
     config.name = _clean(payload.name)
     config.slug = _clean(payload.slug)
-    config.currency = _clean(payload.currency) or "USD"
-    config.locale = _clean(payload.locale) or "fr"
+    config.currency = _clean(payload.currency) or "DZD"
+    config.locale = _clean(payload.locale) or "fr-DZ"
 
     config.address = _clean(payload.address)
     config.phone = _clean(payload.phone)

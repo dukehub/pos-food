@@ -2,6 +2,7 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.security.utils import get_password_hash
 from .models import StaffUser
 from .schemas import StaffUserCreate
 
@@ -26,12 +27,15 @@ async def create_user(
     )
     if existing.scalar_one_or_none() is not None:
         raise HTTPException(status_code=409, detail="Username already exists for tenant")
+    
+    # Hash the PIN or use default
+    pwd_hash = get_password_hash(payload.pin_code) if payload.pin_code else get_password_hash("0000")
 
     user = StaffUser(
         tenant_id=tenant_id,
         username=payload.username,
         full_name=payload.full_name,
-        pin_code=payload.pin_code,
+        password_hash=pwd_hash,
         role=payload.role,
         language=payload.language,
         avatar_url=payload.avatar_url,
