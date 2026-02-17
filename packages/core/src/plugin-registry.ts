@@ -2,7 +2,8 @@ import { reactive } from 'vue'
 import type {
   PluginRegistration,
   ComponentContribution,
-  RouteContribution
+  RouteContribution,
+  NavigationContribution
 } from './types'
 
 /**
@@ -83,6 +84,25 @@ export class PluginRegistry {
     }
 
     return routes
+  }
+
+  /**
+   * Get all navigation contributions for a specific app.
+   */
+  getNavigation(app: 'admin' | 'pos' | 'waiter'): NavigationContribution[] {
+    const items: NavigationContribution[] = []
+
+    for (const registration of this.plugins.values()) {
+      if (registration.navigation) {
+        for (const nav of registration.navigation) {
+          if (nav.app === app) {
+            items.push(nav)
+          }
+        }
+      }
+    }
+
+    return items.sort((a, b) => (a.order ?? 100) - (b.order ?? 100))
   }
 
   /**

@@ -22,6 +22,16 @@ export function registerProductExportPlugin(registry: PluginRegistry): void {
         label: 'Export CSV Button'
       }
     ],
+    navigation: [
+      {
+        app: 'admin',
+        id: 'product-export-reports',
+        label: 'Reports',
+        icon: 'i-lucide-file-bar-chart',
+        to: '/reports',
+        order: 90
+      }
+    ],
     messages: {
       fr: {
         plugins: {

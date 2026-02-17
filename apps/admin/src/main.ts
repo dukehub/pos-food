@@ -6,13 +6,16 @@ import ui from '@nuxt/ui/vue-plugin'
 import { createAppI18n } from '@pos/i18n'
 import { REGISTRY_KEY, pluginRegistry } from '@pos/core'
 import App from './App.vue'
-import { router } from './router'
+import { router, setupPluginRoutes } from './router'
 
 // --- Register plugins before mounting ---
 import { registerProductExportPlugin } from '@pos/plugin-product-export'
 import { registerProductNutritionPlugin } from '@pos/plugin-product-nutrition'
 registerProductExportPlugin(pluginRegistry)
 registerProductNutritionPlugin(pluginRegistry)
+
+// --- Setup dynamic routes ---
+setupPluginRoutes()
 
 const app = createApp(App)
 const pinia = createPinia()

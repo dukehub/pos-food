@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { pluginRegistry } from '@pos/core'
 
 const { t } = useI18n()
+
+// Fetch plugin navigation items
+const pluginNavItems = pluginRegistry.getNavigation('admin')
 
 const navLinks = computed(() => [
   [
@@ -31,7 +35,8 @@ const navLinks = computed(() => [
       label: t('nav.tables'),
       icon: 'i-lucide-armchair',
       to: '/tables'
-    }
+    },
+    ...pluginNavItems // Inject plugin items here
   ],
   [
     {

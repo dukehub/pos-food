@@ -28,6 +28,16 @@ export function registerProductNutritionPlugin(registry: PluginRegistry): void {
         })
       }
     ],
+    navigation: [
+      {
+        app: 'admin',
+        id: 'product-nutrition-info',
+        label: 'Nutrition Info',
+        icon: 'i-lucide-apple',
+        to: '/nutrition',
+        order: 95
+      }
+    ],
     messages: {
       fr: {
         plugins: {
