@@ -50,3 +50,18 @@ class DiningTableOut(BaseModel):
     parent_table_id: str | None
     is_active: bool
 
+
+class FloorZoneUpdate(BaseModel):
+    name: str | None = Field(default=None, min_length=1, max_length=80)
+    display_order: int | None = None
+    is_active: bool | None = None
+
+
+class DiningTableUpdate(BaseModel):
+    zone_id: str | None = None
+    code: str | None = Field(default=None, min_length=1, max_length=40)
+    qr_code: str | None = Field(default=None, max_length=128)
+    capacity: int | None = Field(default=None, ge=1, le=20)
+    status: TableStatus | None = None
+    is_active: bool | None = None
+

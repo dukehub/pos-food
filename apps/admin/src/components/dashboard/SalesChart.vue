@@ -1,112 +1,33 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
-
-// Demo 7-day data
-const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
-const values = [8200, 9400, 7800, 11200, 13500, 15800, 12450]
-const max = Math.max(...values)
-const chartHeight = 200
-const chartWidth = 600
-const padding = 40
-
-// Build SVG path
-function buildPath(): string {
-  const stepX = (chartWidth - padding * 2) / (values.length - 1)
-  return values
-    .map((v, i) => {
-      const x = padding + i * stepX
-      const y = chartHeight - padding - ((v / max) * (chartHeight - padding * 2))
-      return `${i === 0 ? 'M' : 'L'} ${x} ${y}`
-    })
-    .join(' ')
-}
-
-function buildAreaPath(): string {
-  const stepX = (chartWidth - padding * 2) / (values.length - 1)
-  const linePath = values
-    .map((v, i) => {
-      const x = padding + i * stepX
-      const y = chartHeight - padding - ((v / max) * (chartHeight - padding * 2))
-      return `${i === 0 ? 'M' : 'L'} ${x} ${y}`
-    })
-    .join(' ')
-  const lastX = padding + (values.length - 1) * stepX
-  const baseY = chartHeight - padding
-  return `${linePath} L ${lastX} ${baseY} L ${padding} ${baseY} Z`
-}
-
-const linePath = buildPath()
-const areaPath = buildAreaPath()
+// Mock chart using CSS for now, as we don't have a charting lib installed yet
+// and instructions say "Mock Data" / "CSS-based"
+const bars = [40, 70, 45, 90, 60, 80, 50]
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 </script>
 
 <template>
   <UCard>
     <template #header>
       <div class="flex items-center justify-between">
-        <h3 class="text-base font-semibold">{{ t('dashboard.chart.salesTitle') }}</h3>
-        <UBadge color="primary" variant="subtle">7j</UBadge>
+        <h3 class="text-base font-semibold text-gray-900 dark:text-white">Revenue (7 Days)</h3>
+        <USelectMenu :options="['Last 7 days', 'Last 30 days']" model-value="Last 7 days" size="xs" />
       </div>
     </template>
 
-    <svg
-      :viewBox="`0 0 ${chartWidth} ${chartHeight}`"
-      class="w-full h-auto"
-      preserveAspectRatio="xMidYMid meet"
-    >
-      <defs>
-        <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" class="[stop-color:var(--color-primary-500)] [stop-opacity:0.3]" />
-          <stop offset="100%" class="[stop-color:var(--color-primary-500)] [stop-opacity:0.02]" />
-        </linearGradient>
-      </defs>
-
-      <!-- Grid lines -->
-      <line
-        v-for="i in 4"
-        :key="i"
-        :x1="padding"
-        :x2="chartWidth - padding"
-        :y1="padding + ((i - 1) * (chartHeight - padding * 2)) / 3"
-        :y2="padding + ((i - 1) * (chartHeight - padding * 2)) / 3"
-        class="stroke-default"
-        stroke-width="0.5"
-        stroke-dasharray="4 4"
-      />
-
-      <!-- Area fill -->
-      <path :d="areaPath" fill="url(#areaGrad)" />
-
-      <!-- Line -->
-      <path
-        :d="linePath"
-        fill="none"
-        class="stroke-primary"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-
-      <!-- Dots + labels -->
-      <g v-for="(val, i) in values" :key="i">
-        <circle
-          :cx="padding + i * ((chartWidth - padding * 2) / (values.length - 1))"
-          :cy="chartHeight - padding - ((val / max) * (chartHeight - padding * 2))"
-          r="4"
-          class="fill-primary stroke-background"
-          stroke-width="2"
-        />
-        <text
-          :x="padding + i * ((chartWidth - padding * 2) / (values.length - 1))"
-          :y="chartHeight - 10"
-          text-anchor="middle"
-          class="fill-muted text-xs"
-          font-size="12"
-        >
-          {{ days[i] }}
-        </text>
-      </g>
-    </svg>
+    <div class="h-64 flex items-end justify-between gap-2 mt-4 px-2">
+      <div v-for="(bar, index) in bars" :key="index" class="flex flex-col items-center flex-1 group">
+         <div class="relative w-full flex items-end justify-center h-full">
+            <div 
+                class="w-full max-w-[40px] bg-primary-500 dark:bg-primary-400 rounded-t-sm transition-all duration-500 group-hover:bg-primary-600"
+                :style="{ height: `${bar}%` }"
+            >
+                <UTooltip :text="`$${bar * 10}`" :popper="{ placement: 'top' }">
+                    <div class="w-full h-full absolute inset-0"></div>
+                </UTooltip>
+            </div>
+         </div>
+         <span class="text-xs text-gray-500 mt-2">{{ days[index] }}</span>
+      </div>
+    </div>
   </UCard>
 </template>

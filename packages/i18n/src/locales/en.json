@@ -28,6 +28,7 @@
   },
   "nav": {
     "dashboard": "Dashboard",
+    "catalog": "Catalog",
     "products": "Products",
     "categories": "Categories",
     "orders": "Orders",
@@ -95,5 +96,11 @@
     "network": "Network error. Please try again.",
     "unauthorized": "Unauthorized",
     "not_found": "Not found"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "description": "Recent system notifications",
+    "empty": "No new notifications",
+    "markAllRead": "Mark all as read"
   }
 }

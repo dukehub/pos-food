@@ -4,8 +4,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db.session import get_session
 from app.core.tenancy.context import get_tenant_id
 
-from .schemas import DevicePrinterCreate, DevicePrinterOut
-from .service import create_printer, list_printers
+from .schemas import DevicePrinterCreate, DevicePrinterOut, DevicePrinterUpdate
+from .service import create_printer, list_printers, update_printer, delete_printer
 
 router = APIRouter()
 
@@ -33,5 +33,24 @@ async def post_printer(
     payload: DevicePrinterCreate, session: AsyncSession = Depends(get_session)
 ):
     tenant_id = _require_tenant()
+    tenant_id = _require_tenant()
     return await create_printer(session, tenant_id, payload)
+
+
+@router.put("/printers/{printer_id}", response_model=DevicePrinterOut)
+async def put_printer(
+    printer_id: str,
+    payload: DevicePrinterUpdate,
+    session: AsyncSession = Depends(get_session),
+):
+    tenant_id = _require_tenant()
+    return await update_printer(session, tenant_id, printer_id, payload)
+
+
+@router.delete("/printers/{printer_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_printer_endpoint(
+    printer_id: str, session: AsyncSession = Depends(get_session)
+):
+    tenant_id = _require_tenant()
+    await delete_printer(session, tenant_id, printer_id)
 

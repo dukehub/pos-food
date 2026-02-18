@@ -10,20 +10,21 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "vue": "^3.5.0",
-    "vue-router": "^4.5.0",
-    "pinia": "^3.0.0",
-    "vue-i18n": "^11.2.8",
-    "zod": "^4.3.6",
-    "vee-validate": "^4.15.1",
-    "@vee-validate/zod": "^4.15.1",
-    "@pos/ui": "workspace:*",
+    "@pos/api": "workspace:*",
     "@pos/core": "workspace:*",
     "@pos/i18n": "workspace:*",
-    "@pos/validation": "workspace:*",
-    "@pos/api": "workspace:*",
     "@pos/plugin-product-export": "workspace:*",
-    "@pos/plugin-product-nutrition": "workspace:*"
+    "@pos/plugin-product-nutrition": "workspace:*",
+    "@pos/ui": "workspace:*",
+    "@pos/validation": "workspace:*",
+    "@vee-validate/zod": "^4.15.1",
+    "@vueuse/core": "^14.2.1",
+    "pinia": "^3.0.0",
+    "vee-validate": "^4.15.1",
+    "vue": "^3.5.0",
+    "vue-i18n": "^11.2.8",
+    "vue-router": "^4.5.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.2",

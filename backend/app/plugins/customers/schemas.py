@@ -32,9 +32,27 @@ class CustomerOut(BaseModel):
     rc: str | None
     tax_id: str | None
     address: str | None
-    current_balance: Decimal
-    credit_limit: Decimal | None
+    current_balance: float
+    credit_limit: float | None
     payment_due_days: int
     phone_whatsapp: str | None
     allow_notifications: bool
     is_active: bool
+    created_at: datetime
+    updated_at: datetime
+
+
+class CustomerUpdate(BaseModel):
+    name: str | None = Field(default=None, max_length=120)
+    phone: str | None = Field(default=None, max_length=32)
+    email: str | None = Field(default=None, max_length=160)
+    nif: str | None = Field(default=None, max_length=64)
+    ai: str | None = Field(default=None, max_length=64)
+    rc: str | None = Field(default=None, max_length=64)
+    tax_id: str | None = Field(default=None, max_length=64)
+    address: str | None = Field(default=None, max_length=255)
+    credit_limit: float | None = None
+    payment_due_days: int | None = None
+    phone_whatsapp: str | None = Field(default=None, max_length=32)
+    allow_notifications: bool | None = None
+    is_active: bool | None = None

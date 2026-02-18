@@ -4,8 +4,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db.session import get_session
 from app.core.tenancy.context import get_tenant_id
 
-from .schemas import CustomerCreate, CustomerOut
-from .service import create_customer, list_customers
+from .schemas import CustomerCreate, CustomerOut, CustomerUpdate
+from .service import create_customer, list_customers, update_customer, delete_customer
 
 router = APIRouter()
 
@@ -34,3 +34,21 @@ async def post_customer(
 ):
     tenant_id = _require_tenant()
     return await create_customer(session, tenant_id, payload)
+
+
+@router.put("/customers/{customer_id}", response_model=CustomerOut)
+async def put_customer(
+    customer_id: str,
+    payload: CustomerUpdate,
+    session: AsyncSession = Depends(get_session),
+):
+    tenant_id = _require_tenant()
+    return await update_customer(session, tenant_id, customer_id, payload)
+
+
+@router.delete("/customers/{customer_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_customer_endpoint(
+    customer_id: str, session: AsyncSession = Depends(get_session)
+):
+    tenant_id = _require_tenant()
+    await delete_customer(session, tenant_id, customer_id)

@@ -1,5 +1,4 @@
 import { createI18n } from 'vue-i18n'
-import type { I18n } from 'vue-i18n'
 import fr from './locales/fr.json'
 import ar from './locales/ar.json'
 import en from './locales/en.json'
@@ -15,7 +14,7 @@ const RTL_LOCALES: SupportedLocale[] = ['ar']
  */
 export function createAppI18n(
   appMessages?: Record<string, Record<string, unknown>>
-): I18n {
+) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const messages: Record<string, any> = {
     fr: { ...fr },
@@ -54,7 +53,8 @@ export function createAppI18n(
  * Merge plugin locale messages into a running i18n instance.
  */
 export function mergePluginMessages(
-  i18n: I18n,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  i18n: any,
   pluginMessages: Record<string, Record<string, unknown>>
 ): void {
   for (const [locale, messages] of Object.entries(pluginMessages)) {

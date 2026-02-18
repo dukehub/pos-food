@@ -11,3 +11,5 @@ declare module '@nuxt/ui/vue-plugin' {
   const plugin: Plugin
   export default plugin
 }
+
+declare module 'vue-i18n'

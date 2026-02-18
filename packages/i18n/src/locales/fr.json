@@ -28,6 +28,7 @@
   },
   "nav": {
     "dashboard": "Tableau de bord",
+    "catalog": "Catalogue",
     "products": "Produits",
     "categories": "Catégories",
     "orders": "Commandes",
@@ -95,5 +96,11 @@
     "network": "Erreur réseau. Veuillez réessayer.",
     "unauthorized": "Non autorisé",
     "not_found": "Non trouvé"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "description": "Notifications récentes du système",
+    "empty": "Aucune nouvelle notification",
+    "markAllRead": "Tout marquer comme lu"
   }
 }

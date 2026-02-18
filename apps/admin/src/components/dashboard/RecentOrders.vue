@@ -1,51 +1,43 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
-
-type OrderStatus = 'pending' | 'preparing' | 'ready' | 'delivered'
-
-const statusColors: Record<OrderStatus, 'warning' | 'info' | 'success' | 'neutral'> = {
-  pending: 'warning',
-  preparing: 'info',
-  ready: 'success',
-  delivered: 'neutral'
-}
+const orders = [
+  { id: '#ORD-001', customer: 'Walk-in', total: '$45.00', status: 'completed', time: '10 min ago' },
+  { id: '#ORD-002', customer: 'Table 5', total: '$120.50', status: 'pending', time: '25 min ago' },
+  { id: '#ORD-003', customer: 'Uber Eats', total: '$32.00', status: 'cooking', time: '40 min ago' },
+  { id: '#ORD-004', customer: 'Walk-in', total: '$15.00', status: 'completed', time: '1 hr ago' },
+  { id: '#ORD-005', customer: 'Table 2', total: '$85.00', status: 'cancelled', time: '2 hrs ago' },
+]
 
 const columns = [
-  { accessorKey: 'orderNum', header: () => t('dashboard.recentOrders.orderNum') },
-  { accessorKey: 'table', header: () => t('dashboard.recentOrders.table') },
-  { accessorKey: 'status', header: () => t('dashboard.recentOrders.status') },
-  { accessorKey: 'total', header: () => t('dashboard.recentOrders.total') },
-  { accessorKey: 'time', header: () => t('dashboard.recentOrders.time') }
-]
+  { key: 'id', label: 'Order ID', id: 'id' },
+  { key: 'customer', label: 'Customer', id: 'customer' },
+  { key: 'status', label: 'Status', id: 'status' },
+  { key: 'total', label: 'Total', id: 'total' },
+] as any[]
 
-const rows = [
-  { orderNum: '#1084', table: 'T-05', status: 'preparing' as OrderStatus, total: '2 400 DA', time: '12:34' },
-  { orderNum: '#1083', table: 'T-12', status: 'pending' as OrderStatus, total: '1 850 DA', time: '12:28' },
-  { orderNum: '#1082', table: 'T-03', status: 'ready' as OrderStatus, total: '3 200 DA', time: '12:15' },
-  { orderNum: '#1081', table: 'T-08', status: 'delivered' as OrderStatus, total: '1 600 DA', time: '12:02' },
-  { orderNum: '#1080', table: 'T-01', status: 'delivered' as OrderStatus, total: '4 100 DA', time: '11:45' }
-]
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case 'completed': return 'success'
+    case 'pending': return 'warning'
+    case 'cooking': return 'primary'
+    case 'cancelled': return 'error'
+    default: return 'neutral'
+  }
+}
 </script>
 
 <template>
   <UCard>
     <template #header>
-      <div class="flex items-center gap-2">
-        <UIcon name="i-lucide-clock" class="text-blue-500 size-5" />
-        <h3 class="text-base font-semibold">{{ t('dashboard.recentOrders.title') }}</h3>
+      <div class="flex items-center justify-between">
+        <h3 class="text-base font-semibold">Recent Orders</h3>
+        <UButton variant="ghost" color="neutral" to="/orders" size="xs">View all</UButton>
       </div>
     </template>
 
-    <UTable :data="rows" :columns="columns">
-      <template #status-cell="{ row }">
-        <UBadge
-          :color="statusColors[row.original.status as OrderStatus]"
-          variant="subtle"
-          size="sm"
-        >
-          {{ t(`dashboard.recentOrders.status${row.original.status.charAt(0).toUpperCase() + row.original.status.slice(1)}`) }}
+    <UTable :rows="orders" :columns="columns">
+      <template #status-data="props">
+        <UBadge :color="getStatusColor((props as any).row.status)" variant="subtle" size="xs">
+          {{ (props as any).row.status }}
         </UBadge>
       </template>
     </UTable>

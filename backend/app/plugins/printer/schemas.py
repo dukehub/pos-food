@@ -31,5 +31,17 @@ class DevicePrinterOut(BaseModel):
     ip_address: str | None
     port: int
     paper_width: int
+    port: int
+    paper_width: int
     is_active: bool
+
+
+class DevicePrinterUpdate(BaseModel):
+    name: str | None = Field(default=None, min_length=1, max_length=100)
+    driver_type: PrinterType | None = None
+    system_printer_name: str | None = Field(default=None, max_length=120)
+    ip_address: str | None = Field(default=None, max_length=64)
+    port: int | None = Field(default=None, ge=1, le=65535)
+    paper_width: int | None = Field(default=None, ge=58, le=112)
+    is_active: bool | None = None
 

@@ -1,4 +1,5 @@
 from decimal import Decimal
+from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -17,6 +18,15 @@ class OrderCreate(BaseModel):
     lines: list[OrderLineCreate] = Field(default_factory=list)
 
 
+class OrderLineModifierOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    
+    id: str
+    group_name_snapshot: str
+    item_name_snapshot: str
+    price_delta: Decimal
+
+
 class OrderLineOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -27,6 +37,7 @@ class OrderLineOut(BaseModel):
     quantity: int
     unit_price: Decimal
     line_total: Decimal
+    modifiers: list[OrderLineModifierOut] = Field(default_factory=list)
 
 
 class OrderOut(BaseModel):
@@ -37,5 +48,12 @@ class OrderOut(BaseModel):
     status: str
     note: str | None
     total_amount: Decimal
+    created_at: datetime
+    updated_at: datetime
     lines: list[OrderLineOut] = Field(default_factory=list)
+
+
+class OrderUpdate(BaseModel):
+    status: str | None = Field(default=None, max_length=30)
+    note: str | None = Field(default=None, max_length=255)
 

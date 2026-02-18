@@ -1,34 +1,23 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
+const products = [
+  { name: 'Cheeseburger', qty: 145, revenue: '$1,250' },
+  { name: 'French Fries', qty: 300, revenue: '$900' },
+  { name: 'Coke', qty: 250, revenue: '$500' },
+  { name: 'Pizza Margherita', qty: 80, revenue: '$1,100' },
+]
 
 const columns = [
-  { accessorKey: 'rank', header: () => t('dashboard.topProducts.rank') },
-  { accessorKey: 'product', header: () => t('dashboard.topProducts.product') },
-  { accessorKey: 'category', header: () => t('dashboard.topProducts.category') },
-  { accessorKey: 'qty', header: () => t('dashboard.topProducts.qty') },
-  { accessorKey: 'revenue', header: () => t('dashboard.topProducts.revenue') }
-]
-
-const rows = [
-  { rank: 1, product: 'Pizza Margherita', category: 'Pizzas', qty: 42, revenue: '25 200 DA' },
-  { rank: 2, product: 'Burger Classic', category: 'Burgers', qty: 38, revenue: '22 800 DA' },
-  { rank: 3, product: 'Salade César', category: 'Salades', qty: 27, revenue: '10 800 DA' },
-  { rank: 4, product: 'Tacos Poulet', category: 'Tacos', qty: 24, revenue: '12 000 DA' },
-  { rank: 5, product: 'Limonade Maison', category: 'Boissons', qty: 56, revenue: '11 200 DA' }
-]
+  { key: 'name', label: 'Product', id: 'name' },
+  { key: 'qty', label: 'Sold', id: 'qty' },
+  { key: 'revenue', label: 'Revenue', id: 'revenue' },
+] as any[]
 </script>
 
 <template>
   <UCard>
     <template #header>
-      <div class="flex items-center gap-2">
-        <UIcon name="i-lucide-trophy" class="text-amber-500 size-5" />
-        <h3 class="text-base font-semibold">{{ t('dashboard.topProducts.title') }}</h3>
-      </div>
+      <h3 class="text-base font-semibold">Top Products</h3>
     </template>
-
-    <UTable :data="rows" :columns="columns" />
+    <UTable :rows="products" :columns="columns" />
   </UCard>
 </template>

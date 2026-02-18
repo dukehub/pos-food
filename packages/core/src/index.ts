@@ -9,3 +9,4 @@ export type {
   RouteContribution,
   PluginRegistration
 } from './types'
+export { useAuthStore } from './auth'
